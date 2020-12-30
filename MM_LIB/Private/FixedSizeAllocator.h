@@ -6,22 +6,6 @@ class FixedSizeAllocator
 {
 	Allocator* batch = nullptr;
 	size_t batch_size = 0;
-
-	Allocator* add_allocator()
-	{
-		batch_size += 1;
-		if(batch == nullptr)
-		{
-			batch = (Allocator*) malloc(sizeof(Allocator));
-			new(batch) Allocator();
-		}
-		else
-		{
-			batch = (Allocator*)realloc((void*)batch, sizeof(Allocator) * (batch_size));
-			new(&batch[batch_size - 1]) Allocator();
-		}
-		return &batch[batch_size - 1];
-	}
 public:
 	void* allocate(size_t size)
 	{
@@ -52,7 +36,8 @@ public:
 			if (batch[i].owns(mem_ptr))
 			{
 				batch[i].deallocate(mem_ptr, size);
-				// @todo: Gestisci la rimozione del nodo in caso...
+				if (batch[i].is_empty())
+					request_remove_allocator(i);
 				return;
 			}
 		}
@@ -68,5 +53,37 @@ public:
 			}
 		}
 		return false;
+	}
+
+private:
+	void request_remove_allocator(size_t idx)
+	{
+		batch[idx] = std::move(batch[batch_size - 1]);
+
+		if (batch_size == 1)
+		{
+			free(batch);
+		}
+		else
+		{
+			batch = (Allocator*)realloc((void*)batch, sizeof(Allocator) * (batch_size - 1));
+		}
+		batch_size -= 1;
+	}
+
+	Allocator* add_allocator()
+	{
+		batch_size += 1;
+		if (batch == nullptr)
+		{
+			batch = (Allocator*)malloc(sizeof(Allocator));
+			new(batch) Allocator();
+		}
+		else
+		{
+			batch = (Allocator*)realloc((void*)batch, sizeof(Allocator) * (batch_size));
+			new(&batch[batch_size - 1]) Allocator();
+		}
+		return &batch[batch_size - 1];
 	}
 };

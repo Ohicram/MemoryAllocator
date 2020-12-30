@@ -39,8 +39,8 @@ void operator delete(void* memory)
 {
 	if(memory)
 	{
-		alloc_mem -= _msize(memory);
-		s_ChunkAlloc.deallocate(memory, _msize(memory));
+		alloc_mem -= 1;// _msize(memory);
+		s_ChunkAlloc.deallocate(memory, 1);// _msize(memory));
 	}
 }
 
