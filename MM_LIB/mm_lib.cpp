@@ -1,5 +1,6 @@
 #include "mm_lib.h"
 #include <iostream>
+#include "Private/FallbackAllocator.h"
 #include "Private/Mallocator.h"
 #include "Private/SegregatorAllocator.h"
 #include "Private/SmallAllocator.h"
@@ -13,7 +14,8 @@ size_t mm_stats::GetAllocatedMemory()
 }
 
 //static StackAllocator<16384> s_ChunkAlloc;
-static SegregatorAllocator<16, SmallAllocator<16, 128>, Mallocator> s_Allocator;
+//static SegregatorAllocator<16, SmallAllocator<16, 128>, Mallocator> s_Allocator;
+static FallbackAllocator<SegregatorAllocator<16, SmallAllocator<16, 128>, StackAllocator<512>>, Mallocator> s_Allocator;
 
 #ifndef MM_LIB_DISABLE
 

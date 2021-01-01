@@ -13,10 +13,10 @@ int main()
 	const size_t N = 100;
 	char* c_arr[N];
 
-	CustomSize<16>* smallObj;
-	CustomSize<32>* largeObj;
-	smallObj = new CustomSize<16>();
-	largeObj = new CustomSize<32>();
+	CustomSize<16>* smallObj = new CustomSize<16>();
+	CustomSize<32>* largeObj = new CustomSize<32>();
+	CustomSize<512>* veryLargeObj = new CustomSize<512>();
+
 /*	for (size_t i = 0; i < 10; ++i)
 	{
 		c_arr[i] = new char();
@@ -62,5 +62,6 @@ int main()
 	std::cout << "c_arr[49]: " << *(c_arr[49]) << std::endl;
 	std::cout << "c_arr[99]: " << *(c_arr[99]) << std::endl;
 	//std::cout << "Dieser zug endet hier......" << std::endl;*/
+
 	return 0;
 }

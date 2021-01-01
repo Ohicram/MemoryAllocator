@@ -15,4 +15,10 @@ public:
 		if (mem_ptr != nullptr)
 			free(mem_ptr);
 	}
+
+	bool owns(void* mem_ptr)
+	{
+		// @todo: boh...
+		return mem_ptr != nullptr;
+	}
 };

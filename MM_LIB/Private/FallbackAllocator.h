@@ -7,7 +7,7 @@ public:
 	void* allocate(size_t size)
 	{
 		void* mem_ptr = Primary::allocate(size);
-		if(ptr == nullptr)
+		if(mem_ptr == nullptr)
 		{
 			mem_ptr = Fallback::allocate(size);
 		}
@@ -24,6 +24,6 @@ public:
 
 	bool owns(void* mem_ptr)
 	{
-		return Primary::owns(mem_ptr, size) | Fallback::owns(mem_ptr, size);
+		return Primary::owns(mem_ptr) || Fallback::owns(mem_ptr);
 	}
 };
