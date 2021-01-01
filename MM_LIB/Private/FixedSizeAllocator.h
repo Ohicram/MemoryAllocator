@@ -1,8 +1,15 @@
 #pragma once
 #include <memory>
 
+struct IFixedSizeAllocator
+{
+	virtual void* allocate(size_t) = 0;
+	virtual void deallocate(void*, size_t) = 0;
+	virtual bool owns(void*) = 0;
+};
+
 template<class Allocator, size_t s> 
-class FixedSizeAllocator
+class FixedSizeAllocator : public IFixedSizeAllocator
 {
 	Allocator* batch = nullptr;
 	size_t batch_size = 0;
@@ -43,7 +50,7 @@ public:
 		}
 	}
 
-	void owns(void* mem_ptr, size_t size)
+	bool owns(void* mem_ptr)
 	{
 		for (size_t i = 0; i < batch_size; ++i)
 		{

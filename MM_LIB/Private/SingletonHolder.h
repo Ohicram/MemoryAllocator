@@ -3,7 +3,7 @@
 template<class T>
 class SingletonHolder {
 public:
-	static T& get() {
+	static T& Get() {
 		static SingletonHolder instance;
 		return instance.m_content;
 	};
