@@ -30,6 +30,7 @@
     <ClInclude Include="Private\mm_allocation.h" />
     <ClInclude Include="Private\SingletonHolder.h" />
     <ClInclude Include="Private\SmallAllocator.h" />
+    <ClInclude Include="Private\StackAllocator.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

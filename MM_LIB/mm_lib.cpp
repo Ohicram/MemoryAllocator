@@ -4,6 +4,7 @@
 #include "Private/FixedSizeAllocator.h"
 #include "Private/Mallocator.h"
 #include "Private/SmallAllocator.h"
+#include "Private/StackAllocator.h"
 
 static size_t alloc_mem = 0;
 
@@ -12,7 +13,7 @@ size_t mm_stats::GetAllocatedMemory()
 	return alloc_mem;
 }
 
-static SmallAllocator<16, 128> s_ChunkAlloc;
+static StackAllocator<16384> s_ChunkAlloc;
 
 
 #ifndef MM_LIB_DISABLE

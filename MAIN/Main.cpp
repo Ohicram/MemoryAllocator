@@ -7,7 +7,22 @@ int main()
 	const size_t N = 100;
 	char* c_arr[N];
 
-	for(size_t i = 0; i < N; ++i)
+	for (size_t i = 0; i < 10; ++i)
+	{
+		c_arr[i] = new char();
+		*(c_arr[i]) = '0' + (i);
+	}
+
+	delete c_arr[2];
+	delete c_arr[7];
+	delete c_arr[5];
+	for (int i = 9; i >= 0; --i)
+	{
+		delete c_arr[i];
+	}
+
+
+	/*for(size_t i = 0; i < N; ++i)
 	{
 		c_arr[i] = new char();
 		*(c_arr[i]) = '0' + (i/10);
@@ -36,6 +51,6 @@ int main()
 	std::cout << "c_arr[39]: " << *(c_arr[39]) << std::endl;
 	std::cout << "c_arr[49]: " << *(c_arr[49]) << std::endl;
 	std::cout << "c_arr[99]: " << *(c_arr[99]) << std::endl;
-	//std::cout << "Dieser zug endet hier......" << std::endl;
+	//std::cout << "Dieser zug endet hier......" << std::endl;*/
 	return 0;
 }
