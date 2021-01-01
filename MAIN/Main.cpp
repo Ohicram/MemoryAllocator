@@ -2,12 +2,22 @@
 
 #include <iostream>
 
+template<size_t S>
+struct CustomSize
+{
+	char junk[S];
+};
+
 int main()
 {
 	const size_t N = 100;
 	char* c_arr[N];
 
-	for (size_t i = 0; i < 10; ++i)
+	CustomSize<16>* smallObj;
+	CustomSize<32>* largeObj;
+	smallObj = new CustomSize<16>();
+	largeObj = new CustomSize<32>();
+/*	for (size_t i = 0; i < 10; ++i)
 	{
 		c_arr[i] = new char();
 		*(c_arr[i]) = '0' + (i);
@@ -19,7 +29,7 @@ int main()
 	for (int i = 9; i >= 0; --i)
 	{
 		delete c_arr[i];
-	}
+	}*/
 
 
 	/*for(size_t i = 0; i < N; ++i)

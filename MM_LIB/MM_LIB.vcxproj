@@ -28,6 +28,7 @@
     <ClInclude Include="Private\FixedSizeAllocator.h" />
     <ClInclude Include="Private\Mallocator.h" />
     <ClInclude Include="Private\mm_allocation.h" />
+    <ClInclude Include="Private\SegregatorAllocator.h" />
     <ClInclude Include="Private\SingletonHolder.h" />
     <ClInclude Include="Private\SmallAllocator.h" />
     <ClInclude Include="Private\StackAllocator.h" />

@@ -36,14 +36,14 @@ public:
 	
 	void* allocate(size_t size)
 	{
-		if (size < MaxObjSize)
+		if (size <= MaxObjSize)
 			return m_pool[size - 1]->allocate(size);
 		return nullptr;
 	}
 	
 	void deallocate(void* mem_ptr, size_t size)
 	{
-		if (size < MaxObjSize)
+		if (size <= MaxObjSize)
 			m_pool[size - 1]->deallocate(mem_ptr, size);
 	}
 

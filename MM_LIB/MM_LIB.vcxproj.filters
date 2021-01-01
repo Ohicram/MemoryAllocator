@@ -50,5 +50,8 @@
     <ClInclude Include="Private\StackAllocator.h">
       <Filter>Header Files\Allocators</Filter>
     </ClInclude>
+    <ClInclude Include="Private\SegregatorAllocator.h">
+      <Filter>Header Files\Allocators</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
